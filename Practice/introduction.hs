@@ -57,3 +57,17 @@ triangles t = [(a, b, c) | c <- t, b <- t, a <- t] -- expected outcome : triangl
 rightTriangles t = [(a, b, c) | c <- t, b <- t, a <- t, a ^ 2 + b ^ 2 == c ^ 2] -- expected outcome : rightTriangles [1..10] -> [(4,3,5),(3,4,5),(8,6,10),(6,8,10)]
 
 rightTriangles' t = [(a, b, c) | c <- t, b <- t, a <- t, a ^ 2 + b ^ 2 == c ^ 2, a + b + c == 24] -- rightTriangles' [1..10] -> [(8,6,10),(6,8,10)]
+
+-- HASKELL BASIC
+-- 1) ++ operator : concatenation
+-- [1, 2, 3, 4] ++ [9, 10, 11, 12] = [1,2,3,4,9,10,11,12]
+-- "hello" ++ " " ++ "world" = "hello world"
+-- ['w','o'] ++ ['o','t'] = "woot"
+
+-- 2) : operator : puts something in front of the list
+-- "A" : " SMALL CAT" -> "A SMALL CAT"
+-- 1:[2, 3, 4, 5] -> [1, 2, 3, 4, 5]
+
+-- 3) !! : Get an element out of the list by index; indices start at 0
+-- "Steve Buscemi" !! 6  -> 'B'
+-- [9.4,33.2,96.2,11.2,23.25] !! 1 -> 33.2
