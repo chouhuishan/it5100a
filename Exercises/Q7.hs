@@ -1,0 +1,1 @@
+module Q6 (@:) where
