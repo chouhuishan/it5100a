@@ -71,3 +71,61 @@ rightTriangles' t = [(a, b, c) | c <- t, b <- t, a <- t, a ^ 2 + b ^ 2 == c ^ 2,
 -- 3) !! : Get an element out of the list by index; indices start at 0
 -- "Steve Buscemi" !! 6  -> 'B'
 -- [9.4,33.2,96.2,11.2,23.25] !! 1 -> 33.2
+
+-- 4) head : takes a list and return the first element (index = 0)
+-- 5) tail : takes a list and returns the everything except the head
+-- 6) last : takes a list and return the last element
+-- 7) length : equivalent of len()
+-- 8) null : checks if the list is empty --> if empty, return True, esle, return False
+-- 9) reverse : reverses a list ; reverse [5, 4, 3, 2, 1] --> [1, 2, 3, 4, 5]
+
+-- 10) take : takes a number and returns the first n elements of the list
+-- take 3 [5,4,3,2,1] -> [5,4,3] ; (see below for explanation)
+
+-- take 3 [5,4,3,2,1]
+-- = 5 : take 2 [4,3,2,1]
+-- = 5 : (4 : take 1 [3,2,1])
+-- = 5 : (4 : (3 : take 0 [2,1]))
+-- = 5 : (4 : (3 : []))
+-- = [5,4,3]
+
+-- take 1 [3,9,3] -> [3]
+-- take 5 [1,2] -> [1,2]
+-- take 0 [6, 6, 6] -> [6, 6, 6] -> NOTE: if we try to take 0 elements, we get an empty list
+
+-- 11) drop : skips the first n elements of the list and return the rest
+-- drop 3 [8,4,2,1,5,6] -> [1, 5, 6] ; (see below for explanation)
+
+-- drop 3 [8,4,2,1,5,6]
+-- = drop 2 [4,2,1,5,6]   -- skip 8
+-- = drop 1 [2,1,5,6]     -- skip 4
+-- = drop 0 [1,5,6]       -- skip 2
+-- = [1,5,6]
+
+-- drop 0 [1,2,3,4] -> [1,2,3,4]
+-- drop 100 [1,2,3,4] -> []
+
+-- 12) maximum : return the largest element
+-- 13) minimum : return the smallest element
+
+-- 14) elem : returns True if the list contains an item equal to the first argument
+-- 4 `elem` [3, 4, 5, 6] --> True
+-- 10 `elem` [3, 4, 5, 6] --> False
+
+-- 15) Texas Ranges
+-- [1..20] -> [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+-- ['a' .. 'z'] -> "abcdefghijklmnopqrstuvwxyz"
+
+-- 15.1) Texas ranges w step
+-- [2,4..20] -> [2,4,6,8,10,12,14,16,18,20]
+-- [3,6..20] -> [3,6,9,12,15,18]
+
+-- Try to avoid using floating numbers in ranges as they are not completely precise
+-- [0.1, 0.3 .. 1] -> [0.1,0.3,0.5,0.7,0.8999999999999999,1.0999999999999999]
+
+-- 16) cycle : takes a list and cycles into infinite cycle
+-- take 10 (cycle [1,2,3]) -> [1,2,3,1,2,3,1,2,3,1]
+-- take 12 (cycle "LOL ") -> "LOL LOL LOL "
+
+-- 17) repeat : take an element and produce an infinite list of just that element
+-- take 10 (repeat 5) : [5,5,5,5,5,5,5,5,5,5]
