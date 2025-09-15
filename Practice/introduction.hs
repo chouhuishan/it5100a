@@ -52,6 +52,8 @@ pairUp xs ys = zip xs ys -- expected outcome : pairUp [1,2,3,4,5] [5,5,5,5,5] ->
 -- The longer list is cut short to match the length of the shorter one.
 
 -- Combination of list comprehension & tuples
-triangles t = [(a, b, c) | c <- t, b <- t, a <- t]
+triangles t = [(a, b, c) | c <- t, b <- t, a <- t] -- expected outcome : triangles [1..10] -> VERY LONG, lists all possible tuple combination
 
-rightTriangles t = [(a, b, c) | c <- t, b <- t, a <- t]
+rightTriangles t = [(a, b, c) | c <- t, b <- t, a <- t, a ^ 2 + b ^ 2 == c ^ 2] -- expected outcome : rightTriangles [1..10] -> [(4,3,5),(3,4,5),(8,6,10),(6,8,10)]
+
+rightTriangles' t = [(a, b, c) | c <- t, b <- t, a <- t, a ^ 2 + b ^ 2 == c ^ 2, a + b + c == 24] -- rightTriangles' [1..10] -> [(8,6,10),(6,8,10)]
