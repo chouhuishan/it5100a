@@ -24,7 +24,7 @@ showCheck = either id (\n -> "ok: " ++ show n) . checkPositive
 -- showCheck 0
 -- "not positive"
 
--- ghci> showCheck (-3)
+-- showCheck (-3)
 -- "not positive"
 
 -- QNS: What is id? It is an identity function.
@@ -38,12 +38,6 @@ showCheck = either id (\n -> "ok: " ++ show n) . checkPositive
 safeDiv :: Int -> Int -> Either String Int
 safeDiv _ 0 = Left "division by 0 is error"
 safeDiv a b = Right (a `div` b)
-
-pipeline :: Int -> Int -> Either String Int
-pipeline a b = do
-  x <- checkPositive a
-  y <- checkPositive b
-  safeDiv x y
 
 -- E.g.
 -- safeDiv 3 0
@@ -63,3 +57,26 @@ safeDiv' a b = Right (fromIntegral a / fromIntegral b) -- if you want float, use
 -- E.g.
 -- safeDiv' 3 2
 -- Right 1.5
+
+safeDiv'' :: Int -> Int -> Either String Int -- NOTICE : previous codes only guards against 0 denominator. THIS IS FULLY SAFE-PROOF.
+safeDiv'' a b
+  | a <= 0 = Left "numerator cannot be 0"
+  | b <= 0 = Left "demoninator cannot be 0"
+  | otherwise = Right (a `div` b)
+
+-- chaining Eithers with do-notation
+pipeline :: Int -> Int -> Either String Int
+pipeline a b = do
+  x <- checkPositive a
+  y <- checkPositive b
+  safeDiv'' x y
+
+-- E.g
+-- pipeline 6 3
+-- Right 2
+
+-- pipeline 0 2
+-- Left "not positive"
+
+-- pipeline 2 0
+-- Left "not positive"
